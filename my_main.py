@@ -30,3 +30,21 @@ def test_waits_book():
     time.sleep(15)
     driver.quit()
 
+def test_accept_alert():
+    browser = webdriver.Chrome()
+    browser.get("http://suninjuly.github.io/alert_accept.html")
+    browser.find_element(By.CSS_SELECTOR, ".btn").click()
+    # confirm = browser.switch_to.alert
+    # confirm.accept()
+    browser.switch_to.alert.accept()
+    num = browser.find_element(By.ID, "input_value")
+    x = int(num.text)
+
+    def calc(x):
+        return str(math.log(abs(12 * math.sin(int(x)))))
+
+    y = calc(x)
+    browser.find_element(By.ID, "answer").send_keys(y)
+    browser.find_element(By.CLASS_NAME, "btn").click()
+    time.sleep(10)
+    browser.quit()
